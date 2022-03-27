@@ -5,4 +5,10 @@ export const colors = {
   black: "#1C1C1C",
   white: "#fff",
   gray: "#9B9FA4",
+
+  blackScheme: {
+    400: "#000",
+    500: "#111",
+    600: "#555",
+  },
 };

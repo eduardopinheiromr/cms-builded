@@ -18,6 +18,8 @@
       "@utils": ["src/utils/index"],
       "@services": ["src/services/index"],
       "@mocks/*": ["src/mocks/*"],
+      "@stores/*": ["src/stores/*"],
+      "@modules/*": ["src/modules/*"],
       "@hooks/*": ["src/hooks/*"],
       "@i18n/*": ["src/i18n/*"],
       "@config/*": ["src/config/*"],

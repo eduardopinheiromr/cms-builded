@@ -1,18 +1,18 @@
-import { Text, Box, BoxProps } from "@chakra-ui/layout";
+import { Text, Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
+import { ReactNode } from "react";
 
-export type ButtonProps = {
-  children: string;
+export type Props = {
+  children: string | ReactNode;
   fit?: boolean;
   onClick?: () => void;
   withIcon?: boolean | JSX.Element;
   href?: string;
-  type?: "button" | "submit" | "reset";
-} & BoxProps;
+} & ButtonProps;
 
-export default function Button(props: ButtonProps) {
+export default function Button(props: Props) {
   if (props.href) {
     const { href, ...propsWithoutHref } = props;
     return (
@@ -26,24 +26,13 @@ export default function Button(props: ButtonProps) {
   return <ButtonBase {...props} />;
 }
 
-function ButtonBase(props: ButtonProps) {
+function ButtonBase(props: Props) {
+  const { withIcon, ...rest } = props;
   return (
-    <Box
-      {...props}
-      w={props.w ?? props.fit ? "fit-content" : "auto"}
-      as={props.as ?? "button"}
-      p={["10px 20px", "10px 20px", "10px 40px", "10px 40px"]}
-      bg="coral"
-      borderRadius={20}
-      color="white"
-      fontWeight="bold"
-      fontSize={["18px", "18px", "18px", "26px"]}
-      transition=".5s"
-      shadow="5px 5px 15px rgba(232, 82, 74, 0.15)"
-      _hover={{
-        bg: "#b63d3d",
-      }}
-      style={{ gap: "8px" }}
+    <ChakraButton
+      w="full"
+      {...rest}
+      colorScheme={props.colorScheme || "blackScheme"}
       d="flex"
       alignItems="center"
       justifyContent="center"
@@ -52,10 +41,10 @@ function ButtonBase(props: ButtonProps) {
         {props.children}
       </Text>
       {props.withIcon && props.withIcon === true ? (
-        <Icon as={BsArrowRight} />
+        <Icon ml={4} as={BsArrowRight} />
       ) : (
         props.withIcon
       )}
-    </Box>
+    </ChakraButton>
   );
 }
